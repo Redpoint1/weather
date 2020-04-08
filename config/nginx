@@ -1,0 +1,24 @@
+proxy_cache_path /var/cache/nginx levels=1:2 keys_zone=weather:10m inactive=20m max_size=10m;
+
+server {
+    listen 80;
+    listen [::]:80;
+
+    server_name weather.rozar.eu weather.rozar.sk;
+
+    location /api/ {
+        if ($request_method = GET) {
+              set $args $args&appid=<API_KEY>;
+        }
+        error_log /tmp/weather.log debug;
+        rewrite    /api/(.*) /data/2.5/$1 break;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_pass https://api.openweathermap.org;
+        proxy_cache weather;
+        proxy_cache_methods GET;
+        proxy_cache_min_uses 1;
+        proxy_cache_valid 200 302 15m;
+        proxy_cache_valid any      5m;
+    }
+}
