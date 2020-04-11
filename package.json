@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "author": "Richard Rozar",
+  "bugs": {
+    "url": "https://github.com/Redpoint1/weather/issues"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -14,6 +17,7 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
+    "bootstrap": "^4.4.1",
     "core-js": "^3.6.4",
     "vue": "^2.6.11",
     "vue-router": "^3.1.6",
