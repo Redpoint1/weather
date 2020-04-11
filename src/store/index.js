@@ -10,13 +10,13 @@ export default new Vuex.Store({
     longtitue: 17.5762,
     units: "metric",
     language: "en",
-    current: {},
+    currentWeather: {},
     hourlyPrediction: [],
     dailyPrediction: []
   },
   mutations: {
     currentWeather(state, payload) {
-      state.current = payload;
+      state.currentWeather = payload;
     },
     hourlyPrediction(state, payload) {
       state.hourlyPrediction = payload;
@@ -48,5 +48,16 @@ export default new Vuex.Store({
       return promise;
     }
   },
-  modules: {}
+  getters: {
+    temperatureUnit(state) {
+      switch (state.units) {
+        case "metric":
+          return "°C";
+        case "imperial":
+          return "°F";
+        default:
+          return "K";
+      }
+    }
+  }
 });

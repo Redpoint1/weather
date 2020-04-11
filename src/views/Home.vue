@@ -1,16 +1,21 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <p>There is nothing right now :(</p>
+  <div class="home h-100 d-flex align-items-center justify-content-center">
+    <Weather :weather="currentWeather" />
   </div>
 </template>
 
 <script>
+import Weather from "@/components/Weather";
 export default {
   name: "Home",
-  components: {},
+  components: { Weather },
   beforeCreate: function() {
     this.$store.dispatch("getWeather");
+  },
+  computed: {
+    currentWeather() {
+      return this.$store.state.currentWeather;
+    }
   }
 };
 </script>
