@@ -1,7 +1,13 @@
 <template>
-  <div id="app">
+  <main id="app" class="container">
     <router-view />
-  </div>
+  </main>
 </template>
 
-<style lang="scss"></style>
+<style>
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+#app {
+  flex: 1 0 auto;
+}
+</style>
